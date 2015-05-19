@@ -24,6 +24,9 @@ This is the answer.
 
 ## Screenshots ##
 
+### Add product fallbacks in order of priority from the Linked Products tab.
+
+![Add product fallbacks in order of priority from the Linked Products tab.](assets/screenshot-1.png)
 
 ## Changelog ##
 
