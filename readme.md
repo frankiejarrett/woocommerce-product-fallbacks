@@ -13,8 +13,6 @@ Automatically display another product in place of an out-of-stock product.
 **WC requires at least:** 2.1.0  
 **WC tested up to:** 2.3.8  
 
-[![Build Status](https://travis-ci.org/fjarrett/woocommerce-product-fallbacks.png?branch=master)](https://travis-ci.org/fjarrett/woocommerce-product-fallbacks) 
-
 ## Description ##
 
 Automatically display another product in place of an out-of-stock product.
