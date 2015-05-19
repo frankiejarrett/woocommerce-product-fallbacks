@@ -19,6 +19,11 @@ Automatically display another product in place of an out-of-stock product.
 
 ## Frequently Asked Questions ##
 
+### Does this plugin overrite my product data when it goes out-of-stock? ###
+No. This plugin does not alter your out-of-stock products in any way.
+
+It simply puts a veneer on your out-of-stock items with items that are in stock so users are presented with something they can purchase immediately.
+
 ### What happens if the fallback product is also out-of-stock? ###
 This is why you can add more than one fallback, in order of priority, so that if your first choice fallback is sold out, another fallback will be used.
 
