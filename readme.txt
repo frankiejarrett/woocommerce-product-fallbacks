@@ -17,9 +17,21 @@ Automatically display another product in place of an out-of-stock product.
 
 == Frequently Asked Questions ==
 
-= I have a question? =
+= What happens if the fallback product is also out-of-stock? =
 
-This is the answer.
+This is why you can add more than one fallback, in order of priority, so that if your first choice fallback is sold out, another fallback will be used.
+
+If all of the fallbacks are out-of-stock, no replacement will be made to the original product.
+
+= Do fallbacks work on products placed in widget areas or cross-sell locations too? =
+
+Yes! Everywhere your product is being displayed on the site, whether in a widget area, or as a cross-selling or up-selling item, will be replaced by its fallback when it goes out-of-stock.
+
+= What will happen when someone visits the URL of a product that is out-of-stock? =
+
+If that produce has an available fallback the user will be redirected to that automatically.
+
+If no fallback is available, no redirection will occur.
 
 == Screenshots ==
 
