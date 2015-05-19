@@ -175,11 +175,11 @@ class WC_Product_Fallbacks {
 		if (
 			is_admin()
 			||
-			empty( $query->query['is_singular'] )
+			! empty( $query->is_single )
 			||
-			empty( $query->query['post_type'] )
+			'product' !== $query->get( 'post_type' )
 			||
-			'product' !== $query->query['post_type']
+			! is_shop()
 		) {
 			return;
 		}
