@@ -1,6 +1,6 @@
 === WooCommerce Product Fallbacks ===
 Contributors: fjarrett
-Tags: ecommerce, inventory, products, sales, shopping, stock, store, woocommerce, woothemes
+Tags: ecommerce, inventory, products, sales, shop, shopping, stock, store, woocommerce
 Requires at least: 4.0
 Tested up to: 4.2
 Stable tag: 1.0.0

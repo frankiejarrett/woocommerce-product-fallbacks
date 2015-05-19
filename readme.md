@@ -5,7 +5,7 @@
 Prevent out-of-stock products from taking up important real estate on your site.
 
 **Contributors:** [fjarrett](https://profiles.wordpress.org/fjarrett)  
-**Tags:** [ecommerce](https://wordpress.org/plugins/tags/ecommerce), [inventory](https://wordpress.org/plugins/tags/inventory), [products](https://wordpress.org/plugins/tags/products), [sales](https://wordpress.org/plugins/tags/sales), [shopping](https://wordpress.org/plugins/tags/shopping), [stock](https://wordpress.org/plugins/tags/stock), [store](https://wordpress.org/plugins/tags/store), [woocommerce](https://wordpress.org/plugins/tags/woocommerce), [woothemes](https://wordpress.org/plugins/tags/woothemes)  
+**Tags:** [ecommerce](https://wordpress.org/plugins/tags/ecommerce), [inventory](https://wordpress.org/plugins/tags/inventory), [products](https://wordpress.org/plugins/tags/products), [sales](https://wordpress.org/plugins/tags/sales), [shop](https://wordpress.org/plugins/tags/shop), [shopping](https://wordpress.org/plugins/tags/shopping), [stock](https://wordpress.org/plugins/tags/stock), [store](https://wordpress.org/plugins/tags/store), [woocommerce](https://wordpress.org/plugins/tags/woocommerce)  
 **Requires at least:** 4.0  
 **Tested up to:** 4.2  
 **Stable tag:** 1.0.0  
