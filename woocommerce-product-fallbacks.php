@@ -175,7 +175,9 @@ class WC_Product_Fallbacks {
 		if (
 			is_admin()
 			||
-			! isset( $query->query['post_type'] )
+			empty( $query->query['is_singular'] )
+			||
+			empty( $query->query['post_type'] )
 			||
 			'product' !== $query->query['post_type']
 		) {
@@ -194,6 +196,10 @@ class WC_Product_Fallbacks {
 	 * @return void
 	 */
 	public function template_redirect() {
+		if ( ! is_singular( 'product' ) ) {
+			return;
+		}
+
 		global $post;
 
 		$fallbacks = isset( $post->ID ) ? get_post_meta( $post->ID, self::META_KEY, true ) : array();
