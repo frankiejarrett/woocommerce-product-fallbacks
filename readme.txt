@@ -23,7 +23,8 @@ This is the answer.
 
 == Screenshots ==
 
-1. Add product fallbacks in order of priority from the Linked Products tab.
+1. List product fallbacks in order of priority from the Linked Products tab.
+2. When products are out-of-stock they are automatically replaced by their fallback product.
 
 == Changelog ==
 

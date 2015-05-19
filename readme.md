@@ -24,9 +24,13 @@ This is the answer.
 
 ## Screenshots ##
 
-### Add product fallbacks in order of priority from the Linked Products tab.
+### List product fallbacks in order of priority from the Linked Products tab.
 
-![Add product fallbacks in order of priority from the Linked Products tab.](assets/screenshot-1.png)
+![List product fallbacks in order of priority from the Linked Products tab.](assets/screenshot-1.png)
+
+### When products are out-of-stock they are automatically replaced by their fallback product.
+
+![When products are out-of-stock they are automatically replaced by their fallback product.](assets/screenshot-2.png)
 
 ## Changelog ##
 
