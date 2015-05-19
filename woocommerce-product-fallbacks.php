@@ -77,6 +77,9 @@ class WC_Product_Fallbacks {
 		// Save custom product option as post meta
 		add_action( 'woocommerce_process_product_meta', array( $this, 'save_option' ) );
 
+		// Remove fallbacks from queries
+		add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
+
 		// Redirect to fallbacks
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 
@@ -164,6 +167,29 @@ class WC_Product_Fallbacks {
 		$fallbacks = isset( $_POST['fallback_ids'] ) ? array_filter( array_map( 'absint', explode( ',', $_POST['fallback_ids'] ) ) ) : array();
 
 		update_post_meta( $post_id, self::META_KEY, $fallbacks );
+	}
+
+	/**
+	 * Filter products being used as a fallback out of query results
+	 *
+	 * @access public
+	 * @since 1.0.0
+	 * @param array $query
+	 *
+	 * @return void
+	 */
+	public function pre_get_posts( $query ) {
+		if (
+			is_admin()
+			||
+			! empty( $query->is_single )
+		) {
+			return;
+		}
+
+		// @TODO: Decide how to handle duplicates in results
+
+		// $query->set( 'post__not_in' => 157 );
 	}
 
 	/**
