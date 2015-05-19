@@ -17,7 +17,7 @@ Automatically display another product in place of an out-of-stock product.
 
 == Frequently Asked Questions ==
 
-= Does this plugin overrite my product data when it goes out-of-stock? =
+= Does this plugin overwrite my product data when it goes out-of-stock? =
 
 No. This plugin does not alter your out-of-stock products in any way.
 
