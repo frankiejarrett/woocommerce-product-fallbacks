@@ -23,7 +23,7 @@ This is the answer.
 
 == Screenshots ==
 
-1. @TODO
+1. Add product fallbacks in order of priority from the Linked Products tab.
 
 == Changelog ==
 
