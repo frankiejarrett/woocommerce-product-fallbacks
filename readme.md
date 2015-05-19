@@ -5,12 +5,12 @@ Automatically display other products in place of an out-of-stock product.
 
 **Contributors:** [fjarrett](https://profiles.wordpress.org/fjarrett)  
 **Tags:** [ecommerce](https://wordpress.org/plugins/tags/ecommerce)  
-**Requires at least:** 4.2  
+**Requires at least:** 4.0  
 **Tested up to:** 4.2  
 **Stable tag:** 0.1.0  
 **License:** [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html)  
-**WC requires at least:** 2.1  
-**WC tested up to:** 2.3  
+**WC requires at least:** 2.1.0  
+**WC tested up to:** 2.3.8  
 
 ## Description ##
 
