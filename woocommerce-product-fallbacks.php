@@ -105,7 +105,10 @@ class WC_Product_Fallbacks {
 	}
 
 	/**
-	 * Check if WooCommerce exists
+	 * Returns true if WooCommerce exists
+	 *
+	 * Looks at the active list of plugins on the site to
+	 * determine if WooCommerce is installed and activated.
 	 *
 	 * @access private
 	 * @since 0.1.0
@@ -117,7 +120,7 @@ class WC_Product_Fallbacks {
 	}
 
 	/**
-	 *
+	 * Add custom product option field
 	 *
 	 * @access public
 	 * @since 0.1.0
@@ -140,15 +143,15 @@ class WC_Product_Fallbacks {
 		?>
 		<div class="options_group">
 			<p class="form-field">
-				<label for="fallback_ids"><?php _e( 'Fallbacks', 'woocommerce' ) ?></label>
-				<input type="hidden" class="wc-product-search" style="width: 50%;" id="fallback_ids" name="fallback_ids" data-placeholder="<?php _e( 'Search for a product&hellip;', 'woocommerce' ) ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php echo esc_attr( json_encode( $json_ids ) ) ?>" value="<?php echo esc_attr( implode( ',', array_keys( $json_ids ) ) ) ?>" /> <img class="help_tip" data-tip='<?php esc_attr_e( "Fallbacks are products that take the place of the currently viewed product when it is out of stock. You can add several fallbacks in order of priority in case they are also out of stock.", 'woocommerce' ) ?>' src="<?php echo esc_url( WC()->plugin_url() . '/assets/images/help.png' ) ?>" height="16" width="16" />
+				<label for="fallback_ids"><?php _e( 'Fallbacks', 'woocommerce-product-fallbacks' ) ?></label>
+				<input type="hidden" class="wc-product-search" style="width: 50%;" id="fallback_ids" name="fallback_ids" data-placeholder="<?php _e( 'Search for a product&hellip;', 'woocommerce' ) ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php echo esc_attr( json_encode( $json_ids ) ) ?>" value="<?php echo esc_attr( implode( ',', array_keys( $json_ids ) ) ) ?>" /> <img class="help_tip" data-tip='<?php esc_attr_e( "Fallbacks are products that take the place of the currently viewed product when it is out-of-stock. You can add several fallbacks in order of priority in case they are also out-of-stock.", 'woocommerce-product-fallbacks' ) ?>' src="<?php echo esc_url( WC()->plugin_url() . '/assets/images/help.png' ) ?>" height="16" width="16" />
 			</p>
 		</div>
 		<?php
 	}
 
 	/**
-	 *
+	 * Save custom product option as post meta
 	 *
 	 * @access public
 	 * @since 0.1.0
@@ -159,11 +162,11 @@ class WC_Product_Fallbacks {
 	public function process_product_meta( $post_id ) {
 		$fallbacks = isset( $_POST['fallback_ids'] ) ? array_filter( array_map( 'absint', explode( ',', $_POST['fallback_ids'] ) ) ) : array();
 
-		update_post_meta( $post_id, self::META_KEY, array_map( 'absint', $fallback_ids ) );
+		update_post_meta( $post_id, self::META_KEY, $fallbacks );
 	}
 
 	/**
-	 *
+	 * Filter products being used as a fallback out of query results
 	 *
 	 * @access public
 	 * @since 0.1.0
@@ -176,19 +179,24 @@ class WC_Product_Fallbacks {
 			is_admin()
 			||
 			! empty( $query->is_single )
-			||
-			'product' !== $query->get( 'post_type' )
-			||
-			! is_shop()
 		) {
 			return;
 		}
 
-		$query->set( 'post__not_in', array( 157 ) );
+		// @TODO: Decide how to handle duplicates in results
+
+		// $query->set( 'post__not_in' => 157 );
 	}
 
 	/**
+	 * Redirect out-of-stock product URLs to their fallback
 	 *
+	 * If an out-of-stock product does not have a fallback
+	 * specified, no redirection will occur.
+	 *
+	 * If the first fallback is also out-of-stock, subsequent
+	 * fallbacks in the order will be tried. If none of them
+	 * are in-stock, no redirection will occur.
 	 *
 	 * @access public
 	 * @since 0.1.0
@@ -196,19 +204,23 @@ class WC_Product_Fallbacks {
 	 * @return void
 	 */
 	public function template_redirect() {
-		if ( ! is_singular( 'product' ) ) {
+		if ( is_admin() || ! is_singular( 'product' ) ) {
 			return;
 		}
 
 		global $post;
 
-		$fallbacks = isset( $post->ID ) ? get_post_meta( $post->ID, self::META_KEY, true ) : array();
-
-		if ( empty( $fallbacks[0] ) ) {
+		if ( 'instock' === get_post_meta( $post->ID, '_stock_status', true ) ) {
 			return;
 		}
 
-		$location = get_permalink( $fallbacks[0] );
+		$fallback = self::get_fallback( $post->ID );
+
+		if ( empty( $fallback ) ) {
+			return;
+		}
+
+		$location = get_permalink( $fallback );
 
 		wp_safe_redirect( $location, 302 );
 
@@ -216,7 +228,17 @@ class WC_Product_Fallbacks {
 	}
 
 	/**
+	 * Filter product posts with their fallbacks
 	 *
+	 * When a product is out-of-stock, and a fallback exists,
+	 * this filter will replace the values of the original
+	 * WP_Post object with values from the fallback WP_Post
+	 * object.
+	 *
+	 * The fallback product data becomes a veneer, covering
+	 * the original product data so that everywhere the
+	 * original product was featured, the fallback will be
+	 * there instead.
 	 *
 	 * @access public
 	 * @since 0.1.0
@@ -225,17 +247,93 @@ class WC_Product_Fallbacks {
 	 * @return void
 	 */
 	public function the_post( $post ) {
-		$fallbacks = get_post_meta( $post->ID, self::META_KEY, true );
-
-		if ( empty( $fallbacks[0] ) ) {
+		if ( is_admin() ) {
 			return;
 		}
 
-		$_post = get_post( $fallbacks[0] );
+		if ( 'instock' === get_post_meta( $post->ID, '_stock_status', true ) ) {
+			return;
+		}
+
+		$fallback = self::get_fallback( $post->ID );
+
+		if ( empty( $fallback ) ) {
+			return;
+		}
+
+		$_post = get_post( $fallback );
 
 		foreach ( $post as $key => $value ) {
 			$post->$key = $_post->$key;
 		}
+	}
+
+	/**
+	 * Get a product's fallback ID
+	 *
+	 * Fallbacks are tried in the order they are saved in
+	 * the product options under "Linked Products".
+	 *
+	 * If the first fallback is out-of-stock, subsequent
+	 * fallbacks in the order will be tried. If none of them
+	 * are in-stock, no fallback will be returned.
+	 *
+	 * @access public
+	 * @since 0.1.0
+	 * @static
+	 * @param int $post_id
+	 *
+	 * @return int|bool  Post ID on success, false on failure
+	 */
+	public static function get_fallback( $post_id ) {
+		$fallbacks = get_post_meta( $post_id, self::META_KEY, true );
+
+		if ( empty( $fallbacks[0] ) ) {
+			return false;
+		}
+
+		$out_of_stock = self::get_products_out_of_stock();
+
+		foreach ( $fallbacks as $fallback ) {
+			if ( in_array( $fallback, $out_of_stock ) ) {
+				continue;
+			}
+
+			$_fallback = $fallback;
+
+			break;
+		}
+
+		return ! empty( $_fallback ) ? absint( $_fallback ) : false;
+	}
+
+	/**
+	 * Get an array of all product IDs that are out-of-stock
+	 *
+	 * The results of this method are useful in scenarios where
+	 * you want to check if multuple products are out-of-stock
+	 * using a loop.
+	 *
+	 * This way only one post meta query is required to compare
+	 * all the IDs against each product in your loop instead of
+	 * needing to make a new post meta query on each cycle.
+	 *
+	 * @access public
+	 * @since 0.1.0
+	 * @static
+	 *
+	 * @return array
+	 */
+	public static function get_products_out_of_stock() {
+		global $wpdb;
+
+		$results = $wpdb->get_col( "SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_value = 'outofstock'" );
+
+		if ( ! empty( $results ) ) {
+			$results = array_map( 'absint', $results );
+		}
+
+		return (array) $results;
 	}
 
 }
