@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WooCommerce Product Fallbacks
  * Plugin URI: http://www.woothemes.com/products/woocommerce-product-fallbacks/
- * Description: Automatically display another product in place of an out-of-stock product.
+ * Description: Prevent out-of-stock products from taking up important real estate on your site.
  * Version: 1.0.0
  * Author: WooThemes
  * Author URI: http://woothemes.com/
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Main Plugin Class
  *
- * Automatically display another product in place of an out-of-stock product.
+ * Prevent out-of-stock products from taking up important real estate on your site.
  *
  * @version 1.0.0
  * @package WooCommerce

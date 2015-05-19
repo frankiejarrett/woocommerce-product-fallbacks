@@ -9,11 +9,17 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 WC requires at least: 2.1.0
 WC tested up to: 2.3.8
 
-Automatically display another product in place of an out-of-stock product.
+Prevent out-of-stock products from taking up important real estate on your site.
 
 == Description ==
 
-Automatically display another product in place of an out-of-stock product.
+The WooCommerce Product Fallbacks plugin prevents out-of-stock from taking up space on your site by replacing them with the in-stock items you choose.
+
+It's the perfect solution for making sure your visitors are only seeing products that are in-stock and ready for purchase.
+
+ * You choose which products should be used as fallbacks for other products.
+ * Automatically displays an in-stock product in place of an out-of-stock product.
+ * Once your original product is back in-stock the fallback will automatically stop.
 
 == Frequently Asked Questions ==
 
@@ -21,7 +27,7 @@ Automatically display another product in place of an out-of-stock product.
 
 No. This plugin does not alter your out-of-stock products in any way.
 
-It simply puts a veneer on your out-of-stock items with items that are in stock so users are presented with something they can purchase immediately.
+It simply puts a veneer on your out-of-stock items with items that are in-stock so visitors are presented with something they can purchase immediately.
 
 = What happens if the fallback product is also out-of-stock? =
 
