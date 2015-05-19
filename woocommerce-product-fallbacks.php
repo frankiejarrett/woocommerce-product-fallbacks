@@ -72,13 +72,10 @@ class WC_Product_Fallbacks {
 		define( 'WC_PRODUCT_FALLBACKS_INC_DIR', WC_PRODUCT_FALLBACKS_DIR . 'includes/' );
 
 		// Add custom product option
-		add_action( 'woocommerce_product_options_related', array( $this, 'product_options_related' ) );
+		add_action( 'woocommerce_product_options_related', array( $this, 'add_option' ) );
 
 		// Save custom product option as post meta
-		add_action( 'woocommerce_process_product_meta', array( $this, 'process_product_meta' ) );
-
-		// Remove fallbacks from queries
-		add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
+		add_action( 'woocommerce_process_product_meta', array( $this, 'save_option' ) );
 
 		// Redirect to fallbacks
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
@@ -122,12 +119,14 @@ class WC_Product_Fallbacks {
 	/**
 	 * Add custom product option field
 	 *
+	 * @action woocommerce_product_options_related
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
-	public function product_options_related() {
+	public function add_option() {
 		global $post;
 
 		$product_ids = array_filter( array_map( 'absint', (array) get_post_meta( $post->ID, self::META_KEY, true ) ) );
@@ -153,39 +152,18 @@ class WC_Product_Fallbacks {
 	/**
 	 * Save custom product option as post meta
 	 *
+	 * @action woocommerce_process_product_meta
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param int $post_id
 	 *
 	 * @return void
 	 */
-	public function process_product_meta( $post_id ) {
+	public function save_option( $post_id ) {
 		$fallbacks = isset( $_POST['fallback_ids'] ) ? array_filter( array_map( 'absint', explode( ',', $_POST['fallback_ids'] ) ) ) : array();
 
 		update_post_meta( $post_id, self::META_KEY, $fallbacks );
-	}
-
-	/**
-	 * Filter products being used as a fallback out of query results
-	 *
-	 * @access public
-	 * @since 1.0.0
-	 * @param array $query
-	 *
-	 * @return void
-	 */
-	public function pre_get_posts( $query ) {
-		if (
-			is_admin()
-			||
-			! empty( $query->is_single )
-		) {
-			return;
-		}
-
-		// @TODO: Decide how to handle duplicates in results
-
-		// $query->set( 'post__not_in' => 157 );
 	}
 
 	/**
@@ -197,6 +175,8 @@ class WC_Product_Fallbacks {
 	 * If the first fallback is also out-of-stock, subsequent
 	 * fallbacks in the order will be tried. If none of them
 	 * are in-stock, no redirection will occur.
+	 *
+	 * @action template_redirect
 	 *
 	 * @access public
 	 * @since 1.0.0
@@ -239,6 +219,8 @@ class WC_Product_Fallbacks {
 	 * the original product data so that everywhere the
 	 * original product was featured, the fallback will be
 	 * there instead.
+	 *
+	 * @action the_post
 	 *
 	 * @access public
 	 * @since 1.0.0
