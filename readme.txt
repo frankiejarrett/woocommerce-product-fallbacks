@@ -9,11 +9,11 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 WC requires at least: 2.1.0
 WC tested up to: 2.3.8
 
-Automatically display other products in place of an out-of-stock product.
+Automatically display another product in place of an out-of-stock product.
 
 == Description ==
 
-Automatically display other products in place of an out-of-stock product.
+Automatically display another product in place of an out-of-stock product.
 
 == Frequently Asked Questions ==
 
