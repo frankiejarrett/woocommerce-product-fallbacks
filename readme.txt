@@ -3,7 +3,7 @@ Contributors: fjarrett
 Tags: ecommerce
 Requires at least: 4.0
 Tested up to: 4.2
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 WC requires at least: 2.1.0
@@ -27,7 +27,7 @@ This is the answer.
 
 == Changelog ==
 
-= 0.1.0 - May 19, 2015 =
+= 1.0.0 - May 20, 2015 =
 
 * Initial release
 

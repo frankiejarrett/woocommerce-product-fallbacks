@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Product Fallbacks
  * Plugin URI: http://www.woothemes.com/products/woocommerce-product-fallbacks/
  * Description: Automatically display another product in place of an out-of-stock product.
- * Version: 0.1.0
+ * Version: 1.0.0
  * Author: WooThemes
  * Author URI: http://woothemes.com/
  * Developer: Frankie Jarrett
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Automatically display another product in place of an out-of-stock product.
  *
- * @version 0.1.0
+ * @version 1.0.0
  * @package WooCommerce
  * @author  Frankie Jarrett
  */
@@ -47,7 +47,7 @@ class WC_Product_Fallbacks {
 	 *
 	 * @const string
 	 */
-	const VERSION = '0.1.0';
+	const VERSION = '1.0.0';
 
 	/**
 	 * Post meta key for storing fallbacks
@@ -91,7 +91,7 @@ class WC_Product_Fallbacks {
 	 * Return an active instance of this class
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @static
 	 *
 	 * @return WC_Product_Fallbacks
@@ -111,7 +111,7 @@ class WC_Product_Fallbacks {
 	 * determine if WooCommerce is installed and activated.
 	 *
 	 * @access private
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @return bool
 	 */
@@ -123,7 +123,7 @@ class WC_Product_Fallbacks {
 	 * Add custom product option field
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -154,7 +154,7 @@ class WC_Product_Fallbacks {
 	 * Save custom product option as post meta
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @param int $post_id
 	 *
 	 * @return void
@@ -169,7 +169,7 @@ class WC_Product_Fallbacks {
 	 * Filter products being used as a fallback out of query results
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @param array $query
 	 *
 	 * @return void
@@ -199,7 +199,7 @@ class WC_Product_Fallbacks {
 	 * are in-stock, no redirection will occur.
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -241,7 +241,7 @@ class WC_Product_Fallbacks {
 	 * there instead.
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @param WP_Post $post
 	 *
 	 * @return void
@@ -279,7 +279,7 @@ class WC_Product_Fallbacks {
 	 * are in-stock, no fallback will be returned.
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @static
 	 * @param int $post_id
 	 *
@@ -319,7 +319,7 @@ class WC_Product_Fallbacks {
 	 * needing to make a new post meta query on each cycle.
 	 *
 	 * @access public
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @static
 	 *
 	 * @return array
