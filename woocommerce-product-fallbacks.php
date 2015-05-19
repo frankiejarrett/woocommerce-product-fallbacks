@@ -50,6 +50,13 @@ class WC_Product_Fallbacks {
 	const VERSION = '0.1.0';
 
 	/**
+	 * Post meta key for storing fallbacks
+	 *
+	 * @const string
+	 */
+	const META_KEY = '_fallback_ids';
+
+	/**
 	 * Class constructor
 	 *
 	 * @access private
@@ -120,7 +127,7 @@ class WC_Product_Fallbacks {
 	public function product_options_related() {
 		global $post;
 
-		$product_ids = array_filter( array_map( 'absint', (array) get_post_meta( $post->ID, '_fallback_ids', true ) ) );
+		$product_ids = array_filter( array_map( 'absint', (array) get_post_meta( $post->ID, self::META_KEY, true ) ) );
 		$json_ids    = array();
 
 		foreach ( $product_ids as $product_id ) {
@@ -152,7 +159,7 @@ class WC_Product_Fallbacks {
 	public function process_product_meta( $post_id ) {
 		$fallbacks = isset( $_POST['fallback_ids'] ) ? array_filter( array_map( 'absint', explode( ',', $_POST['fallback_ids'] ) ) ) : array();
 
-		update_post_meta( $post_id, '_fallback_ids', array_map( 'absint', $fallback_ids ) );
+		update_post_meta( $post_id, self::META_KEY, array_map( 'absint', $fallback_ids ) );
 	}
 
 	/**
@@ -189,7 +196,7 @@ class WC_Product_Fallbacks {
 	public function template_redirect() {
 		global $post;
 
-		$fallbacks = isset( $post->ID ) ? get_post_meta( $post->ID, '_fallback_ids', true ) : array();
+		$fallbacks = isset( $post->ID ) ? get_post_meta( $post->ID, self::META_KEY, true ) : array();
 
 		if ( empty( $fallbacks[0] ) ) {
 			return;
@@ -212,7 +219,7 @@ class WC_Product_Fallbacks {
 	 * @return void
 	 */
 	public function the_post( $post ) {
-		$fallbacks = get_post_meta( $post->ID, '_fallback_ids', true );
+		$fallbacks = get_post_meta( $post->ID, self::META_KEY, true );
 
 		if ( empty( $fallbacks[0] ) ) {
 			return;
