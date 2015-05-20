@@ -19,6 +19,7 @@ It's the perfect solution for making sure your customers are only seeing product
 
  * You choose which products should be used as fallbacks for other products.
  * Automatically displays an in-stock product in place of an out-of-stock product.
+ * Automatically redirects customers to the in-stock product URL when accessed directly.
  * Once your original product is back in-stock the fallback will automatically stop.
  * You can add multiple fallbacks in order of priority in case they also go out-of-stock.
 
