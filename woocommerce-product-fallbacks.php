@@ -66,11 +66,6 @@ class WC_Product_Fallbacks {
 			return;
 		}
 
-		define( 'WC_PRODUCT_FALLBACKS_PLUGIN', plugin_basename( __FILE__ ) );
-		define( 'WC_PRODUCT_FALLBACKS_DIR', plugin_dir_path( __FILE__ ) );
-		define( 'WC_PRODUCT_FALLBACKS_URL', plugins_url( '/', __FILE__ ) );
-		define( 'WC_PRODUCT_FALLBACKS_INC_DIR', WC_PRODUCT_FALLBACKS_DIR . 'includes/' );
-
 		// Add custom product option
 		add_action( 'woocommerce_product_options_related', array( $this, 'add_option' ) );
 
