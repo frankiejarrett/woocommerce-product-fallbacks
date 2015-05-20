@@ -13,13 +13,14 @@ Prevent out-of-stock products from taking up important real estate on your site.
 
 == Description ==
 
-The WooCommerce Product Fallbacks plugin prevents out-of-stock from taking up space on your site by replacing them with the in-stock items you choose.
+The WooCommerce Product Fallbacks plugin prevents out-of-stock items from taking up space on your site by replacing them with the in-stock items you choose.
 
-It's the perfect solution for making sure your visitors are only seeing products that are in-stock and ready for purchase.
+It's the perfect solution for making sure your customers are only seeing products that are in-stock and ready for purchase.
 
  * You choose which products should be used as fallbacks for other products.
  * Automatically displays an in-stock product in place of an out-of-stock product.
  * Once your original product is back in-stock the fallback will automatically stop.
+ * You can add multiple fallbacks in order of priority in case they also go out-of-stock.
 
 == Frequently Asked Questions ==
 
@@ -27,23 +28,23 @@ It's the perfect solution for making sure your visitors are only seeing products
 
 No. This plugin does not alter your out-of-stock products in any way.
 
-It simply puts a veneer on your out-of-stock items with items that are in-stock so visitors are presented with something they can purchase immediately.
+It simply puts a veneer over your out-of-stock item with data from an in-stock item so your customers are only presented with something they can purchase immediately.
 
 = What happens if the fallback product is also out-of-stock? =
 
-This is why you can add more than one fallback, in order of priority, so that if your first choice fallback is sold out, another fallback will be used.
+This is why you can add more than one fallback, in order of priority, so that if your first choice fallback is sold out another fallback will be used.
 
-If all of the fallbacks are out-of-stock, no replacement will be made to the original product.
+If all of the provided fallbacks are out-of-stock, no replacement will be made to the original product.
 
-= Do fallbacks work on products placed in widget areas or cross-sell locations too? =
+= Do fallbacks work on products placed in widget areas or as cross-sells and up-sells too? =
 
-Yes! Everywhere your product is being displayed on the site, whether in a widget area, or as a cross-selling or up-selling item, will be replaced by its fallback when it goes out-of-stock.
+Yes! Everywhere your product is being displayed on the site, whether in a widget area, or as a cross-selling or up-selling item will be replaced by its fallback when it goes out-of-stock.
 
-= What will happen when someone visits the URL of a product that is out-of-stock? =
+= What happens when someone direclty visits the URL of a product that is out-of-stock? =
 
-If that produce has an available fallback the user will be redirected to that automatically.
+If that product has an available fallback the customer will be redirected to that URL instead automatically.
 
-If no fallback is available, no redirection will occur.
+If no in-stock fallback is available, no redirection will occur.
 
 == Screenshots ==
 
