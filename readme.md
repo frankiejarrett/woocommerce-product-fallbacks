@@ -13,8 +13,6 @@ Prevent out-of-stock products from taking up important real estate on your site.
 **WC requires at least:** 2.1.0  
 **WC tested up to:** 2.3.8  
 
-[![Build Status](https://travis-ci.org/fjarrett/woocommerce-product-fallbacks.png?branch=master)](https://travis-ci.org/fjarrett/woocommerce-product-fallbacks) 
-
 ## Description ##
 
 The WooCommerce Product Fallbacks plugin prevents out-of-stock items from taking up space on your site by replacing them with the in-stock items you choose.
