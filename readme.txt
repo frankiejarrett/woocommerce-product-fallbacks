@@ -7,7 +7,7 @@ Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 WC requires at least: 2.1.0
-WC tested up to: 2.3.8
+WC tested up to: 2.3.9
 
 Prevent out-of-stock products from taking up important real estate on your site.
 
