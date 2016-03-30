@@ -4,10 +4,8 @@
  * Plugin URI: http://www.woothemes.com/products/woocommerce-product-fallbacks/
  * Description: Prevent out-of-stock products from taking up important real estate on your site.
  * Version: 1.0.0
- * Author: WooThemes
- * Author URI: http://woothemes.com/
- * Developer: Frankie Jarrett
- * Developer URI: http://frankiejarrett.com/
+ * Author: Frankie Jarrett
+ * Author URI: http://frankiejarrett.com
  * Depends: WooCommerce
  * Text Domain: woocommerce-product-fallbacks
  * Domain Path: /languages
